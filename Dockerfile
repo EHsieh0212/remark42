@@ -104,10 +104,11 @@ RUN chmod +x /srv/init.sh /usr/local/bin/backup /usr/local/bin/restore /usr/loca
 
 COPY --from=build-backend /build/backend/remark42 /srv/remark42
 COPY --from=build-frontend /srv/frontend/apps/remark42/public/ /srv/web/
+RUN mkdir -p /srv/var
 RUN chown -R app:app /srv
 RUN ln -s /srv/remark42 /usr/bin/remark42
 
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s CMD curl --fail http://localhost:8080/ping || exit 1
 
-CMD ["/srv/remark42", "server", "--store.bolt.path=/tmp/bolt.db"]
+CMD ["/srv/remark42", "server"]
