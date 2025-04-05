@@ -111,4 +111,4 @@ RUN ln -s /srv/remark42 /usr/bin/remark42
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s CMD curl --fail http://localhost:8080/ping || exit 1
 
-CMD ["/srv/remark42", "server"]
+CMD ["/srv/remark42", "server", "--store.bolt.path=/tmp/bolt.db", "--secret=${SECRET}"]
