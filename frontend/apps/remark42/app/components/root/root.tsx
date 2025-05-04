@@ -267,12 +267,12 @@ export class Root extends Component<Props, State> {
                   ))}
                 </div>
               )}
-              {isUserAnonymous(this.props.user) && (
-                <div className="comment-vote-note" style={{ marginBottom: '0.5rem', color: '#888', fontSize: '0.9rem' }}>
-                  ⚠️ Note: Anonymous users cannot upvote or downvote comments. Please log in to use the voting feature.
-                </div>
-              )}
               <div className={clsx('sort-picker', styles.sortPicker)}>
+                {isUserAnonymous(this.props.user) && (
+                  <div className="comment-vote-note" style={{ marginBottom: '0.5rem', color: '#888', fontSize: '0.9rem' }}>
+                    ⚠️ Note: Anonymous users cannot upvote or downvote comments. Please log in to use the voting feature.
+                  </div>
+                )}
                 <SortPicker />
               </div>
               <Comments
