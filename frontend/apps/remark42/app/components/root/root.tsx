@@ -247,7 +247,6 @@ export class Root extends Component<Props, State> {
                     getPreview={this.props.getPreview}
                     uploadImage={imageUploadHandler}
                   />
-                  <div className="comment-vote-note">This is a test message</div>
                 </>
               )}
               {this.props.pinnedComments.length > 0 && (
@@ -335,6 +334,24 @@ export function ConnectedRoot() {
     const observer = new ResizeObserver(() => updateIframeHeight());
 
     updateIframeHeight();
+
+    const rootMain = document.querySelector('.root__main');
+    if (rootMain && !document.querySelector('.comment-vote-note')) {
+      const voteNote = document.createElement('div');
+      voteNote.className = 'comment-vote-note';
+      voteNote.textContent = '⚠️ Note: Anonymous users cannot upvote or downvote comments.';
+      voteNote.style.marginTop = '1rem';
+      voteNote.style.color = '#888';
+      voteNote.style.fontSize = '0.9rem';
+  
+      const pinned = rootMain.querySelector('.root__pinned-comments');
+      if (pinned) {
+        rootMain.insertBefore(voteNote, pinned);
+      } else {
+        rootMain.appendChild(voteNote);
+      }
+    }
+
     observer.observe(document.body);
     return () => observer.disconnect();
   }, []);
