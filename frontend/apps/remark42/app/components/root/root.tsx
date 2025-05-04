@@ -267,6 +267,12 @@ export class Root extends Component<Props, State> {
                   ))}
                 </div>
               )}
+              <div
+                  className="comment-vote-note"
+                  style={{ marginTop: '0.5rem', color: '#888', fontSize: '0.9rem' }}
+                >
+                  ⚠️ Note: Anonymous users cannot upvote or downvote comments. Please log in to use the voting feature.
+              </div>
               <div className={clsx('sort-picker', styles.sortPicker)}>
                 <SortPicker />
               </div>
