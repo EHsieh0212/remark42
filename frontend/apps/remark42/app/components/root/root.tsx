@@ -235,7 +235,7 @@ export class Root extends Component<Props, State> {
           ) : (
             <>
               {!isCommentsDisabled && (
-                <div>
+                <>
                   <CommentForm
                     id={encodeURI(url || '')}
                     intl={this.props.intl}
@@ -248,7 +248,7 @@ export class Root extends Component<Props, State> {
                     uploadImage={imageUploadHandler}
                   />
                   <div className="comment-vote-note">This is a test message</div>
-                </div>
+                </>
               )}
               {this.props.pinnedComments.length > 0 && (
                 <div
