@@ -235,17 +235,20 @@ export class Root extends Component<Props, State> {
           ) : (
             <>
               {!isCommentsDisabled && (
-                <CommentForm
-                  id={encodeURI(url || '')}
-                  intl={this.props.intl}
-                  theme={props.theme}
-                  mix="root__input"
-                  mode="main"
-                  user={props.user}
-                  onSubmit={(text: string, title: string) => this.props.addComment(text, title)}
-                  getPreview={this.props.getPreview}
-                  uploadImage={imageUploadHandler}
-                />
+                <div>
+                  <CommentForm
+                    id={encodeURI(url || '')}
+                    intl={this.props.intl}
+                    theme={props.theme}
+                    mix="root__input"
+                    mode="main"
+                    user={props.user}
+                    onSubmit={(text: string, title: string) => this.props.addComment(text, title)}
+                    getPreview={this.props.getPreview}
+                    uploadImage={imageUploadHandler}
+                  />
+                  <div className="comment-vote-note">This is a test message</div>
+                </div>
               )}
               {this.props.pinnedComments.length > 0 && (
                 <div
@@ -267,12 +270,6 @@ export class Root extends Component<Props, State> {
                   ))}
                 </div>
               )}
-              <div
-                  className="comment-vote-note"
-                  style={{ marginTop: '0.5rem', color: '#888', fontSize: '0.9rem' }}
-                >
-                  ⚠️ Note: Anonymous users cannot upvote or downvote comments. Please log in to use the voting feature.
-              </div>
               <div className={clsx('sort-picker', styles.sortPicker)}>
                 <SortPicker />
               </div>
